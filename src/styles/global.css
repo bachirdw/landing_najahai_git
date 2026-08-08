@@ -1,0 +1,94 @@
+/* Design tokens ported from the current Claude Design source (Najah Home.dc.html).
+   The source itself uses hardcoded inline hex values with no CSS variables —
+   these tokens exist so the site stays maintainable; retune here if the source
+   changes rather than hunting inline styles across every component. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --color-bg: #fff;
+  --color-text: #111;
+  --color-text-muted: #555;
+  --color-text-subtle: #888;
+  --color-text-faint: #999;
+  --color-border: #eee;
+  --color-border-strong: #e2e2e2;
+
+  --color-success: #1f7a4d;
+  --color-success-bg: #e8f7ee;
+  --color-success-border: #cfe9d9;
+  --color-amber: #ffdca8;
+  --color-track: #f0f0f0;
+
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 100px;
+
+  --shadow-window: 0 20px 50px -20px rgba(0, 0, 0, .12);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); font-size: 15px; line-height: 1.55; }
+h1, h2, h3, h4, h5, h6 { font-weight: 800; letter-spacing: -0.01em; margin: 0 0 8px; }
+p { margin: 0 0 12px; }
+a { color: var(--color-text); text-decoration: none; }
+a:hover { color: var(--color-text-muted); }
+img { display: block; max-width: 100%; }
+:focus-visible { outline: 2px solid var(--color-text); outline-offset: 2px; }
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+/* — window mockup (browser-window chrome used throughout feature screenshots) — */
+.win { border: 1px solid var(--color-border); background: #fff; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-window); }
+.win-bar { display: flex; gap: 6px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--color-border); }
+.win-dot { width: 9px; height: 9px; border-radius: 50%; background: #e2e2e2; }
+.win-url { flex: 1; margin-left: 8px; background: #f5f5f5; border-radius: 6px; height: 24px; font-size: 11px; color: var(--color-text-subtle); display: flex; align-items: center; padding: 0 10px; font-family: ui-monospace, monospace; }
+
+/* — buttons — */
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--color-text); color: #fff; font-weight: 600; font-size: 14.5px;
+  padding: 13px 26px; border-radius: var(--radius-full); cursor: pointer; border: none;
+}
+.btn-primary:hover { background: #2a2a2a; color: #fff; }
+.btn-ghost {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  color: var(--color-text); font-weight: 600; font-size: 14.5px;
+  padding: 13px 24px; border: 1px solid #ddd; border-radius: var(--radius-full); cursor: pointer;
+}
+.btn-ghost:hover { background: #fafafa; }
+
+/* — tag / pill labels — */
+.tag-success { font-size: 12px; font-weight: 700; color: var(--color-success); background: var(--color-success-bg); padding: 5px 12px; border-radius: var(--radius-full); }
+.tag-outline { font-size: 12px; color: var(--color-text-muted); border: 1px solid var(--color-border-strong); padding: 5px 12px; border-radius: var(--radius-full); }
+
+/* — segmented tab switcher — */
+.tabgroup { display: flex; gap: 8px; background: #f5f5f5; border-radius: var(--radius-full); padding: 6px; width: fit-content; margin: 0 auto 40px; overflow-x: auto; }
+.tabbtn { padding: 12px 18px; font-size: 13.5px; font-weight: 600; color: var(--color-text-subtle); border-radius: var(--radius-full); cursor: pointer; white-space: nowrap; border: none; background: transparent; font-family: var(--font-body); }
+.tabbtn[aria-selected="true"] { color: var(--color-text); background: #fff; }
+
+/* — progress-bar placeholders (resume/cover-letter mockups) — */
+.bar { height: 7px; border-radius: 4px; background: var(--color-track); }
+.bar-fill { background: var(--color-amber); }
+
+/* — pricing plan cards — */
+.plan { border: 1px solid var(--color-border); border-radius: 16px; padding: 28px 24px; display: flex; flex-direction: column; gap: 14px; }
+.plan.featured { border-color: var(--color-text); box-shadow: 0 20px 50px -20px rgba(0, 0, 0, .15); }
+
+/* — form inputs — */
+.input { width: 100%; padding: 12px 16px; border: 1px solid #ddd; border-radius: var(--radius-md); font-size: 14px; font-family: var(--font-body); box-sizing: border-box; }
+.input:focus { outline: none; border-color: var(--color-text); }
+
+/* — pill tag link (used on the applications table) — */
+.tag { font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: var(--radius-full); border: 1px solid var(--color-border); color: #333; }
+
+/* — data table rows — */
+.grid-table { display: flex; flex-direction: column; border-top: 1px solid var(--color-border); }
+.grid-row { display: grid; grid-template-columns: 2fr 2fr 1fr auto auto; gap: 24px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--color-border); }
+.grid-head { font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--color-text-subtle); }
+@media (max-width: 720px) {
+  .grid-row { grid-template-columns: 1fr; gap: 6px; padding: 16px 0; }
+  .grid-head { display: none; }
+}

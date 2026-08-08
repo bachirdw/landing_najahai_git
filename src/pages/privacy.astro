@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NavMinimal from "../components/NavMinimal.astro";
+import FooterSimple from "../components/FooterSimple.astro";
+import LegalSection from "../components/LegalSection.astro";
+
+// Placeholder text throughout — legal review still pending. Structure exists
+// now so the footer links resolve to a real page for Google/Stripe/Chrome
+// Web Store review; content gets finalized separately.
+const sections = [
+  { title: "1. Information we collect", body: "Placeholder — your resume, profile details, work authorization status, and the job data (title, employer, URL) associated with each application." },
+  { title: "2. How we use your information", body: "Placeholder — to discover matching jobs, score fit, generate tailored resumes and cover letters, and submit applications through the Chrome extension." },
+  { title: "3. Data shared with employers", body: "Placeholder — only the resume, cover letter and answers submitted as part of a given application are shared, and only with that employer." },
+  { title: "4. Data retention", body: "Placeholder — application records, including the exact resume and cover letter sent, are retained so you can review your history at any time." },
+  { title: "5. Your controls", body: "Placeholder — you can pause job discovery, review any application before it is sent, and delete your account and associated data at any time." },
+  { title: "6. Contact", body: "Placeholder — questions about this policy can be sent to privacy@najahai.com.au." },
+];
+---
+<BaseLayout
+  title="Privacy Policy — Najah AI"
+  description="How Najah AI collects, stores and uses your resume and application data."
+  path="/privacy"
+>
+  <NavMinimal />
+
+  <div style="max-width:820px;margin:0 auto;padding:56px 24px 80px">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#888;margin-bottom:12px">Legal</div>
+    <h1 style="font-weight:800;font-size:32px;letter-spacing:-0.02em;margin:0 0 8px">Privacy Policy</h1>
+    <p style="font-size:13px;color:#888;margin:0 0 40px">Last updated: [date] · Applies to najahai.com.au and the Najah AI Chrome extension</p>
+
+    {sections.map((sec) => <LegalSection title={sec.title} body={sec.body} />)}
+
+    <div style="display:flex;gap:16px;margin-top:24px">
+      <a href="/terms" style="font-size:13px;font-weight:600">View Terms of Service</a>
+    </div>
+  </div>
+
+  <FooterSimple />
+</BaseLayout>

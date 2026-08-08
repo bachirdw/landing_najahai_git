@@ -1,0 +1,69 @@
+---
+// Search-filterable applications table — ported from the Claude Design
+// prototype's reactive `state.query` filter. Reimplemented as static HTML
+// (all rows rendered up front) + a small vanilla script that hides/shows
+// rows on input, so the page ships with zero framework JS.
+interface Application {
+  jobTitle: string;
+  jobCity: string;
+  url: string;
+  urlText: string;
+  appliedDate: string;
+  cvUrl: string;
+  letterUrl: string;
+}
+
+const applications: Application[] = [
+  { jobTitle: "Senior Product Designer", jobCity: "Sydney, NSW", url: "#", urlText: "seek.com.au/job/senior-product-designer", appliedDate: "Jul 28, 2026", cvUrl: "#", letterUrl: "#" },
+  { jobTitle: "Site Supervisor", jobCity: "Brisbane, QLD", url: "#", urlText: "indeed.com.au/job/site-supervisor", appliedDate: "Jul 27, 2026", cvUrl: "#", letterUrl: "#" },
+  { jobTitle: "Warehouse Team Lead", jobCity: "Melbourne, VIC", url: "#", urlText: "seek.com.au/job/warehouse-team-lead", appliedDate: "Jul 25, 2026", cvUrl: "#", letterUrl: "#" },
+  { jobTitle: "Underground Mining Operator", jobCity: "Perth, WA", url: "#", urlText: "indeed.com.au/job/mining-operator", appliedDate: "Jul 24, 2026", cvUrl: "#", letterUrl: "#" },
+  { jobTitle: "Frontend Engineer", jobCity: "Sydney, NSW", url: "#", urlText: "seek.com.au/job/frontend-engineer", appliedDate: "Jul 22, 2026", cvUrl: "#", letterUrl: "#" },
+  { jobTitle: "Hospitality Supervisor", jobCity: "Gold Coast, QLD", url: "#", urlText: "indeed.com.au/job/hospitality-supervisor", appliedDate: "Jul 20, 2026", cvUrl: "#", letterUrl: "#" },
+];
+---
+<div style="max-width:420px;margin-bottom:28px">
+  <input id="app-search" class="input" type="text" placeholder="Search by job title, company, or city…" autocomplete="off" />
+</div>
+
+<div class="grid-table">
+  <div class="grid-row grid-head">
+    <div>Job</div>
+    <div>Job URL</div>
+    <div>Date</div>
+    <div>Resume</div>
+    <div>Cover letter</div>
+  </div>
+  {applications.map((row) => (
+    <div class="grid-row" data-search={`${row.jobTitle} ${row.jobCity}`.toLowerCase()}>
+      <div>
+        <div style="font-weight:700;font-size:14px">{row.jobTitle}</div>
+        <div style="font-size:12.5px;color:#888">{row.jobCity}</div>
+      </div>
+      <div><a href={row.url} style="font-size:13px;color:#555">{row.urlText} ↗</a></div>
+      <div style="font-size:13px;color:#666">{row.appliedDate}</div>
+      <div><a href={row.cvUrl} class="tag">Resume</a></div>
+      <div><a href={row.letterUrl} class="tag">Cover letter</a></div>
+    </div>
+  ))}
+  <p id="app-empty" style="display:none;padding:24px 0;color:#888;font-size:13.5px">No applications match "<span id="app-empty-query"></span>".</p>
+</div>
+
+<script>
+  const input = document.querySelector<HTMLInputElement>("#app-search");
+  const rows = document.querySelectorAll<HTMLDivElement>(".grid-row[data-search]");
+  const empty = document.querySelector<HTMLParagraphElement>("#app-empty");
+  const emptyQuery = document.querySelector<HTMLSpanElement>("#app-empty-query");
+
+  input?.addEventListener("input", () => {
+    const q = input.value.trim().toLowerCase();
+    let visible = 0;
+    rows.forEach((row) => {
+      const match = !q || (row.dataset.search ?? "").includes(q);
+      row.style.display = match ? "grid" : "none";
+      if (match) visible += 1;
+    });
+    if (empty) empty.style.display = visible === 0 ? "block" : "none";
+    if (emptyQuery) emptyQuery.textContent = input.value;
+  });
+</script>

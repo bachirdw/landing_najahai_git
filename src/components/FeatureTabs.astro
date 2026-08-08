@@ -1,0 +1,51 @@
+---
+// Interactive "how it works" tab switcher — ported from the Claude Design
+// prototype's React-like state component. Reimplemented as static HTML + a
+// small vanilla script so the page ships with zero framework JS.
+const steps = [
+  { label: "Discover Jobs", url: "app.najahai.com.au/discover", headline: "Jobs found across every AU job board", body: "Najah scans SEEK, Indeed AU, LinkedIn and employer Workday/Greenhouse portals continuously, matching roles to your resume." },
+  { label: "Auto-Tailor Resume & Cover Letter", url: "app.najahai.com.au/tailor", headline: "A resume and cover letter rewritten per job", body: "Each match gets its own tailored resume and a cover letter generated specifically for that role — ready in seconds." },
+  { label: "Auto-Apply Extension", url: "app.najahai.com.au/extension", headline: "A browser agent fills the real form", body: "The Chrome extension applies through Workday, Greenhouse, Lever, LinkedIn Easy Apply, SEEK and Indeed — just like you would." },
+  { label: "Application Tracker", url: "app.najahai.com.au/applications", headline: "Every application logged automatically", body: "The exact resume and cover letter sent to each job is saved and searchable, so you always know what you sent where." },
+];
+---
+<section id="pipeline" class="wrap" style="padding:64px 24px">
+  <div class="tabgroup">
+    {steps.map((step, i) => (
+      <button type="button" class="tabbtn" data-tab-btn={i} aria-selected={i === 0 ? "true" : "false"}>{step.label}</button>
+    ))}
+  </div>
+
+  <div class="win" style="max-width:980px;margin:0 auto">
+    <div class="win-bar"><div class="win-dot"></div><div class="win-dot"></div><div class="win-dot"></div>
+      <div class="win-url tab-url">{steps[0].url}</div>
+    </div>
+    <div style="padding:48px 36px;min-height:260px;display:flex;align-items:center;justify-content:center;text-align:center">
+      {steps.map((step, i) => (
+        <div class="tab-panel" data-tab-panel={i} style={`display:${i === 0 ? "block" : "none"}`} data-url={step.url}>
+          <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#888;margin-bottom:14px">{step.label}</div>
+          <div style="font-weight:800;font-size:28px;margin-bottom:12px;max-width:44ch;letter-spacing:-0.01em">{step.headline}</div>
+          <div style="font-size:14.5px;color:#666;max-width:48ch;margin:0 auto">{step.body}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>("[data-tab-btn]");
+  const panels = document.querySelectorAll<HTMLDivElement>("[data-tab-panel]");
+  const urlBar = document.querySelector<HTMLDivElement>(".tab-url");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const index = btn.dataset.tabBtn;
+      buttons.forEach((b) => b.setAttribute("aria-selected", b === btn ? "true" : "false"));
+      panels.forEach((p) => {
+        const active = p.dataset.tabPanel === index;
+        p.style.display = active ? "block" : "none";
+        if (active && urlBar) urlBar.textContent = p.dataset.url ?? "";
+      });
+    });
+  });
+</script>

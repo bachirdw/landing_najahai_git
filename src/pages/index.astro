@@ -1,0 +1,107 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import FeatureTabs from "../components/FeatureTabs.astro";
+import FeatureBlock from "../components/FeatureBlock.astro";
+import Testimonials from "../components/Testimonials.astro";
+import LegalTeaser from "../components/LegalTeaser.astro";
+import Footer from "../components/Footer.astro";
+import { CHROME_STORE_URL } from "../lib/site";
+---
+<BaseLayout
+  title="Najah AI — Auto-apply for Australian jobs"
+  description="Upload your resume once. Najah AI finds matching jobs across SEEK, Indeed, LinkedIn and employer portals, tailors your resume and cover letter, and applies for you automatically."
+  path="/"
+>
+  <Nav />
+  <Hero />
+  <FeatureTabs />
+
+  <!-- Discover jobs -->
+  <FeatureBlock
+    kicker="Discover jobs"
+    heading="Every board, every portal, watched continuously"
+    body="Najah scans SEEK, Indeed AU, LinkedIn, and the Workday and Greenhouse portals of employers like Atlassian, Canva, Xero, ANZ and Telstra — matching roles to your resume the moment they're posted."
+  >
+    <div class="win">
+      <div class="win-bar"><div class="win-dot"></div><div class="win-dot"></div><div class="win-dot"></div></div>
+      <div style="padding:20px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;border:1px solid var(--color-border);border-radius:10px;padding:13px 16px">
+          <div><div style="font-weight:700;font-size:13.5px">Frontend Engineer</div><div style="font-size:12px;color:#888">Atlassian · Sydney, NSW</div></div>
+          <span style="font-size:12px;font-weight:700;color:var(--color-success)">9.1</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;border:1px solid var(--color-border);border-radius:10px;padding:13px 16px">
+          <div><div style="font-weight:700;font-size:13.5px">Backend Engineer</div><div style="font-size:12px;color:#888">Canva · Remote AU</div></div>
+          <span style="font-size:12px;font-weight:700;color:var(--color-success)">7.8</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;border:1px solid var(--color-border);border-radius:10px;padding:13px 16px">
+          <div><div style="font-weight:700;font-size:13.5px">Site Supervisor</div><div style="font-size:12px;color:#888">Lendlease · Brisbane, QLD</div></div>
+          <span style="font-size:12px;font-weight:700;color:var(--color-success)">6.4</span>
+        </div>
+      </div>
+    </div>
+  </FeatureBlock>
+
+  <!-- Auto-tailor resume & cover letter -->
+  <FeatureBlock
+    kicker="Auto-tailor resume & cover letter"
+    heading="Never send the same resume twice"
+    body="Each application gets a resume rewritten to match that job description, and a cover letter written specifically for it — both ATS-readable, ready in seconds."
+    visualFirst={true}
+  >
+    <div class="win">
+      <div class="win-bar"><div class="win-dot"></div><div class="win-dot"></div><div class="win-dot"></div></div>
+      <div style="padding:20px;display:flex;gap:16px">
+        <div style="flex:1;border:1px solid var(--color-border);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:9px">
+          <div style="font-weight:700;font-size:13px;margin-bottom:2px">Resume — tailored</div>
+          <div class="bar bar-fill"></div>
+          <div class="bar" style="width:70%"></div>
+          <div class="bar bar-fill" style="width:85%"></div>
+          <div class="bar" style="width:60%"></div>
+        </div>
+        <div style="flex:1;border:1px solid var(--color-border);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:9px">
+          <div style="font-weight:700;font-size:13px;margin-bottom:2px">Cover letter</div>
+          <div class="bar"></div>
+          <div class="bar" style="width:90%"></div>
+          <div class="bar" style="width:75%"></div>
+        </div>
+      </div>
+    </div>
+  </FeatureBlock>
+
+  <!-- Auto-apply extension -->
+  <FeatureBlock
+    kicker="Auto-apply extension"
+    heading="A browser agent that fills out the real form"
+    body="The Chrome extension drives your actual browser — filling in Workday, Greenhouse, Lever, LinkedIn Easy Apply, SEEK and Indeed forms the way you would. If a site asks you to log in, it hands control back, then keeps going."
+    ctaText="Add to Chrome"
+    ctaHref={CHROME_STORE_URL}
+    ctaExternal={true}
+  >
+    <div class="win">
+      <div class="win-bar"><div class="win-dot"></div><div class="win-dot"></div><div class="win-dot"></div></div>
+      <div style="padding:20px">
+        <div style="border:1px solid var(--color-border);border-radius:10px;padding:15px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center">
+          <div style="font-weight:700;font-size:13.5px">Senior Product Designer — Application</div>
+          <span style="font-size:11.5px;color:var(--color-success);border:1px solid var(--color-success-border);background:var(--color-success-bg);padding:4px 10px;border-radius:100px">Autofilling…</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div class="bar bar-fill" style="width:80%"></div>
+          <div class="bar bar-fill" style="width:55%"></div>
+          <div class="bar" style="width:65%"></div>
+        </div>
+      </div>
+    </div>
+  </FeatureBlock>
+
+  <div style="height:1px;background:var(--color-border)"></div>
+
+  <Testimonials />
+
+  <div style="height:1px;background:var(--color-border)"></div>
+
+  <LegalTeaser />
+
+  <Footer />
+</BaseLayout>
