@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://najahai.com.au/sitemap-index.xml
