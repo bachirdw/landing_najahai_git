@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import NavMinimal from "../components/NavMinimal.astro";
+import Nav from "../components/Nav.astro";
 import FooterSimple from "../components/FooterSimple.astro";
 import ApplicationsTable from "../components/ApplicationsTable.astro";
 ---
@@ -9,7 +9,7 @@ import ApplicationsTable from "../components/ApplicationsTable.astro";
   description="Every application Najah AI submits is logged automatically — the exact resume and cover letter sent for each job, searchable in seconds."
   path="/applications"
 >
-  <NavMinimal active="applications" />
+  <Nav active="applications" />
 
   <div class="wrap" style="padding:48px 24px 64px">
     <h1 style="font-weight:800;font-size:30px;letter-spacing:-0.02em;margin:0 0 10px">Applications sent</h1>
