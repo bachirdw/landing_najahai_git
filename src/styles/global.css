@@ -63,6 +63,8 @@ img { display: block; max-width: 100%; }
 /* — tag / pill labels — */
 .tag-success { font-size: 12px; font-weight: 700; color: var(--color-success); background: var(--color-success-bg); padding: 5px 12px; border-radius: var(--radius-full); }
 .tag-outline { font-size: 12px; color: var(--color-text-muted); border: 1px solid var(--color-border-strong); padding: 5px 12px; border-radius: var(--radius-full); }
+/* état « en cours » du mockup d'auto-remplissage — ne doit jamais se couper en deux lignes */
+.tag-autofill { font-size: 11.5px; color: var(--color-success); border: 1px solid var(--color-success-border); background: var(--color-success-bg); padding: 4px 10px; border-radius: var(--radius-full); white-space: nowrap; }
 
 /* — segmented tab switcher — */
 .tabgroup { display: flex; gap: 8px; background: #f5f5f5; border-radius: var(--radius-full); padding: 6px; width: fit-content; margin: 0 auto 40px; overflow-x: auto; }
@@ -88,7 +90,399 @@ img { display: block; max-width: 100%; }
 .grid-table { display: flex; flex-direction: column; border-top: 1px solid var(--color-border); }
 .grid-row { display: grid; grid-template-columns: 2fr 2fr 1fr auto auto; gap: 24px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--color-border); }
 .grid-head { font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--color-text-subtle); }
+/* — site header / navigation — */
+.site-header { border-bottom: 1px solid var(--color-border); background: #fff; }
+.nav-bar { display: flex; align-items: center; gap: 36px; padding: 18px 24px; }
+.nav-brand { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 16px; }
+.nav-links { display: flex; gap: 28px; margin-right: auto; }
+.nav-link { font-size: 14.5px; color: #333; }
+.nav-link.is-active { color: var(--color-text); font-weight: 600; }
+/* Barre mobile : masquée tant que la navigation complète tient dans la largeur. */
+.nav-login, .nav-toggle, .nav-menu { display: none; }
+
+/* — hero — */
+.hero { position: relative; overflow: hidden; }
+.hero-glow {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(60% 55% at 30% 10%, rgba(255, 196, 120, .35), transparent 60%),
+    radial-gradient(55% 50% at 75% 25%, rgba(120, 190, 255, .3), transparent 60%),
+    radial-gradient(50% 45% at 55% 55%, rgba(255, 150, 190, .22), transparent 65%);
+}
+.hero-inner { position: relative; z-index: 1; padding: 88px 24px 64px; text-align: center; }
+.hero-kicker { font-size: 12.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 20px; }
+.hero-title { font-size: clamp(38px, 6vw, 68px); line-height: 1.06; letter-spacing: -0.02em; margin: 0 auto 22px; max-width: 17ch; }
+.hero-body { font-size: 17px; line-height: 1.6; color: var(--color-text-muted); max-width: 54ch; margin: 0 auto 30px; }
+.hero-actions { display: flex; gap: 12px; justify-content: center; }
+.hero-win { margin: 56px auto 0; max-width: 900px; text-align: left; }
+.hero-win-body { padding: 26px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 20px; }
+.hero-job-title { font-weight: 700; font-size: 19px; margin-bottom: 6px; }
+.hero-job-meta { font-size: 13px; color: var(--color-text-subtle); margin-bottom: 16px; }
+.hero-job-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.hero-steps { border-left: 1px solid var(--color-border); padding-left: 20px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: var(--color-text-muted); }
+.hero-step-current { color: var(--color-text); font-weight: 600; }
+
+/* — "how it works" tabs — */
+.tabs-section { padding: 64px 24px; }
+.tabs-win { max-width: 980px; margin: 0 auto; }
+.tabs-stage { padding: 48px 36px; min-height: 260px; display: flex; align-items: center; justify-content: center; text-align: center; }
+.tab-kicker { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-subtle); margin-bottom: 14px; }
+.tab-headline { font-weight: 800; font-size: 28px; line-height: 1.25; margin-bottom: 12px; max-width: 44ch; letter-spacing: -0.01em; }
+.tab-body { font-size: 14.5px; color: #666; max-width: 48ch; margin: 0 auto; }
+
+/* — alternating feature blocks — */
+.feature { padding: 56px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.feature .feature-text { order: 1; }
+.feature .feature-visual { order: 2; }
+.feature--visual-first .feature-text { order: 2; }
+.feature--visual-first .feature-visual { order: 1; }
+.feature-kicker { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-subtle); margin-bottom: 14px; }
+.feature-heading { font-size: 32px; line-height: 1.2; margin: 0 0 16px; }
+.feature-body { font-size: 15px; line-height: 1.65; color: var(--color-text-muted); margin: 0 0 20px; }
+
+/* — mockups inside the feature blocks — */
+.mock { padding: 20px; }
+.mock-list { display: flex; flex-direction: column; gap: 10px; }
+.mock-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 13px 16px; }
+.mock-row-title { font-weight: 700; font-size: 13.5px; }
+.mock-row-meta { font-size: 12px; color: var(--color-text-subtle); }
+.mock-score { font-size: 12px; font-weight: 700; color: var(--color-success); }
+.mock-cols { display: flex; gap: 16px; }
+.mock-col { flex: 1; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 16px; display: flex; flex-direction: column; gap: 9px; }
+.mock-col-title { font-weight: 700; font-size: 13px; margin-bottom: 2px; }
+.mock-bars { display: flex; flex-direction: column; gap: 9px; }
+
+/* — testimonials — */
+.testimonials { padding: 64px 24px; }
+.testimonials-title { font-size: 26px; text-align: center; margin: 0 0 40px; }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.testimonial { border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 22px; }
+.testimonial-quote { font-size: 14.5px; line-height: 1.6; color: #222; margin-bottom: 16px; }
+.testimonial-name { font-weight: 700; font-size: 13.5px; }
+.testimonial-role { font-size: 12.5px; color: var(--color-text-subtle); }
+
+/* — legal teaser — */
+.legal-teaser { padding: 56px 24px; }
+.legal-teaser-title { font-size: 20px; margin: 0 0 24px; }
+.legal-teaser-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.legal-teaser-item-title { font-weight: 700; font-size: 14.5px; margin-bottom: 8px; }
+.legal-teaser-item-body { font-size: 13.5px; color: #666; line-height: 1.6; margin: 0 0 8px; }
+.legal-teaser-link { font-size: 13px; font-weight: 600; }
+
+/* — footer — */
+.site-footer { background: var(--color-text); color: #fff; }
+.footer-inner { padding: 52px 24px 28px; }
+.footer-brand { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 16px; margin-bottom: 10px; }
+.footer-tagline { font-size: 13.5px; color: var(--color-text-faint); margin: 0 0 32px; }
+.footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; border-top: 1px solid #2a2a2a; padding-top: 26px; }
+.footer-col-title { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--color-text-faint); margin-bottom: 12px; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; }
+.footer-links a { color: #fff; }
+.footer-legal { border-top: 1px solid #2a2a2a; margin-top: 26px; padding-top: 20px; font-size: 12.5px; color: var(--color-text-faint); }
+
+/* — en-tête des pages secondaires (Pricing, Resume Builder) — */
+.page-hero { position: relative; overflow: hidden; }
+.page-hero-glow { position: absolute; inset: 0; z-index: 0; }
+.page-hero-glow--pricing {
+  background:
+    radial-gradient(55% 55% at 30% 10%, rgba(255, 196, 120, .3), transparent 60%),
+    radial-gradient(50% 50% at 75% 25%, rgba(120, 190, 255, .26), transparent 60%);
+}
+.page-hero-glow--builder {
+  background:
+    radial-gradient(55% 55% at 20% 10%, rgba(255, 196, 120, .3), transparent 60%),
+    radial-gradient(50% 50% at 80% 30%, rgba(120, 190, 255, .26), transparent 60%);
+}
+.page-hero-inner { position: relative; z-index: 1; padding: 72px 24px 48px; }
+.page-hero-inner--center { text-align: center; }
+.page-hero-split { padding-bottom: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.page-hero-kicker { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 14px; }
+.page-hero-title { font-size: clamp(30px, 4.4vw, 42px); letter-spacing: -0.02em; margin: 0 0 14px; }
+.page-hero-title--left { font-size: clamp(32px, 4.4vw, 46px); line-height: 1.12; margin-bottom: 16px; }
+.page-hero-body { font-size: 15.5px; color: var(--color-text-muted); max-width: 56ch; margin: 0 auto; }
+.page-hero-body--left { line-height: 1.65; max-width: none; margin: 0 0 24px; }
+.page-hero-visual .mock { padding: 18px; }
+.page-hero-visual .mock-cols { gap: 14px; }
+.page-hero-visual .mock-col { padding: 14px; }
+.mock-col--ats { gap: 0; }
+.mock-col--ats .mock-col-title { margin-bottom: 10px; }
+.ats-score { font-size: 28px; font-weight: 800; color: var(--color-success); margin-bottom: 4px; }
+.ats-note { font-size: 12px; color: var(--color-text-subtle); }
+
+/* — pricing — */
+.plans { padding: 0 24px 72px; display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 24px; align-items: start; }
+.plan-badge { align-self: flex-start; }
+.plan-name { font-weight: 700; font-size: 15px; }
+.plan-desc { font-size: 13.5px; color: #666; }
+.plan-price { font-size: 34px; font-weight: 800; margin-top: 8px; }
+.plan-price--featured { font-size: 40px; }
+.plan-price-unit { font-size: 16px; font-weight: 600; color: #666; }
+.plan-sub { font-size: 12.5px; color: var(--color-text-subtle); }
+.plan-features { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-direction: column; gap: 10px; font-size: 13.5px; color: #333; }
+.plan-features .is-excluded { color: #aaa; }
+.plan-cta { margin-top: 16px; justify-content: center; }
+
+/* — FAQ (accordéon en mobile seulement, cf. plus bas) — */
+.faq-section { padding: 56px 24px; }
+.faq-title { font-size: 22px; margin: 0 0 24px; }
+.faq { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.faq-q {
+  display: flex; align-items: center; gap: 12px; width: 100%;
+  padding: 0; margin: 0 0 6px; border: none; background: none; cursor: default;
+  font-family: var(--font-body); font-weight: 700; font-size: 14.5px; color: var(--color-text); text-align: left;
+}
+.faq-q > span:first-child { flex: 1; }
+.faq-sign { display: none; }
+.faq-a { font-size: 13.5px; color: #666; line-height: 1.6; margin: 0; }
+
+/* — resume templates — */
+.templates-section { padding: 56px 24px; }
+.templates-title { font-size: 24px; margin: 0 0 8px; }
+.templates-body { font-size: 14.5px; color: #666; margin: 0 0 32px; max-width: 60ch; }
+.templates-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.template-card { border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 16px; }
+.template-preview { height: 180px; border: 1px solid var(--color-border); border-radius: var(--radius-md); margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px; padding: 14px; }
+.template-line { height: 5px; border-radius: 3px; background: var(--color-track); }
+.template-line--name { height: 6px; width: 60%; background: var(--color-text); }
+.template-line--role { width: 40%; background: #ddd; margin-bottom: 8px; }
+.template-name { font-weight: 700; font-size: 14px; }
+
+/* — closing call to action — */
+.closing-cta { padding: 56px 24px; text-align: center; }
+.closing-cta-title { font-size: 26px; margin: 0 0 14px; }
+
+/* — applications page — */
+.applications-page { padding: 48px 24px 64px; }
+.applications-title { font-size: 30px; letter-spacing: -0.02em; margin: 0 0 10px; }
+.applications-body { font-size: 14px; color: #666; max-width: 60ch; margin: 0 0 28px; }
+.app-search { max-width: 420px; margin-bottom: 28px; }
+.app-count-bar { display: none; }
+.cell-job-title { font-weight: 700; font-size: 14px; }
+.cell-job-city { font-size: 12.5px; color: var(--color-text-subtle); }
+.cell-url a { font-size: 13px; color: var(--color-text-muted); }
+.cell-date { font-size: 13px; color: #666; }
+/* dissous en desktop : ses deux enfants redeviennent les colonnes 4 et 5 */
+.cell-actions { display: contents; }
+
+/* ======================================================================
+   MOBILE — port de « Najah Home Mobile.dc.html » (Claude Design).
+   Le prototype dessine ses écrans dans un cadre iPhone : son en-tête réserve
+   60px en haut pour la barre d'état de ce cadre. Sur un vrai téléphone cette
+   barre appartient au système, pas à la page — d'où un padding normal ici,
+   augmenté de env(safe-area-inset-top) pour les encoches en mode standalone.
+   ====================================================================== */
 @media (max-width: 720px) {
-  .grid-row { grid-template-columns: 1fr; gap: 6px; padding: 16px 0; }
+  .wrap { padding: 0 20px; }
+
+  /* header : compact et collant, comme les écrans du prototype */
+  .site-header {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(255, 255, 255, .94);
+    backdrop-filter: blur(10px);
+  }
+  .nav-bar {
+    gap: 10px;
+    padding: calc(14px + env(safe-area-inset-top)) 18px 14px;
+  }
+  .nav-brand { font-size: 15px; margin-right: auto; }
+  .nav-links, .nav-cta { display: none; }
+  .nav-login { display: inline-block; font-size: 13px; font-weight: 600; color: var(--color-text); }
+  .nav-toggle {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+    width: 34px; height: 34px; padding: 0;
+    border: 1px solid #e6e6e6; border-radius: var(--radius-md);
+    background: transparent; cursor: pointer;
+  }
+  .nav-toggle span { width: 14px; height: 1.5px; background: var(--color-text); }
+  .nav-menu {
+    display: flex; flex-direction: column; gap: 2px;
+    padding: 8px 18px 16px;
+    background: #fff; border-bottom: 1px solid var(--color-border);
+  }
+  .nav-menu[hidden] { display: none; }
+  .nav-menu .nav-link { font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid #f4f4f4; }
+  .nav-menu-cta { margin-top: 12px; width: 100%; }
+
+  /* hero */
+  .hero-inner { padding: 44px 20px 40px; }
+  .hero-glow { inset: -30px -40px; filter: blur(22px); }
+  .hero-kicker { font-size: 11px; letter-spacing: .08em; margin-bottom: 14px; }
+  .hero-title { font-size: 28px; line-height: 1.12; letter-spacing: -0.01em; margin-bottom: 14px; max-width: none; }
+  .hero-body { font-size: 14px; line-height: 1.55; margin-bottom: 22px; max-width: none; }
+  .hero-actions { flex-direction: column; gap: 10px; }
+  .hero-actions .btn-primary, .hero-actions .btn-ghost { width: 100%; padding: 14px; }
+  .hero-win { margin-top: 36px; }
+  /* le pipeline passe sous le poste, séparé par un trait horizontal */
+  .hero-win-body { grid-template-columns: 1fr; gap: 0; padding: 18px; }
+  .hero-job-title { font-size: 15px; margin-bottom: 4px; }
+  .hero-job-meta { font-size: 11.5px; margin-bottom: 12px; }
+  .hero-steps {
+    border-left: none; padding-left: 0;
+    border-top: 1px solid var(--color-border); padding-top: 12px; margin-top: 14px;
+    gap: 7px; font-size: 12px;
+  }
+
+  /* tabs */
+  .tabs-section { padding: 32px 20px; }
+  /* la barre d'onglets défile au doigt : sa barre de défilement traverserait la
+     pilule grise, que le prototype montre pleine */
+  .tabgroup { width: auto; margin: 0 0 18px; padding: 5px; gap: 6px; scrollbar-width: none; }
+  .tabgroup::-webkit-scrollbar { display: none; }
+  .tabbtn { padding: 9px 14px; font-size: 11.5px; }
+  .tabs-stage { padding: 28px 20px; min-height: 190px; }
+  .tab-kicker { font-size: 10.5px; margin-bottom: 10px; }
+  .tab-headline { font-size: 19px; margin-bottom: 10px; }
+  .tab-body { font-size: 12.5px; line-height: 1.55; }
+
+  /* feature blocks : une colonne, dans l'ordre du prototype — titre, texte,
+     illustration, puis le bouton. `display:contents` dissout le bloc de texte
+     pour que son bouton puisse passer sous l'illustration ; l'espacement vient
+     alors des marges de chaque élément, d'où gap:0. */
+  .feature { padding: 32px 20px; grid-template-columns: 1fr; gap: 0; }
+  .feature .feature-text,
+  .feature--visual-first .feature-text { display: contents; }
+  .feature-kicker { order: 1; }
+  .feature-heading { order: 2; }
+  .feature-body { order: 3; }
+  .feature .feature-visual,
+  .feature--visual-first .feature-visual { order: 4; }
+  .feature-text .btn-ghost { order: 5; margin-top: 14px; }
+  .feature-kicker { font-size: 11px; margin-bottom: 12px; }
+  .feature-heading { font-size: 20px; line-height: 1.25; margin-bottom: 12px; }
+  .feature-body { font-size: 13px; line-height: 1.6; margin-bottom: 18px; }
+  .feature .btn-ghost { width: 100%; padding: 13px; }
+  /* le prototype réduit ces illustrations à une simple carte : sans la barre de
+     fenêtre, qui n'apporte rien une fois le mockup à cette taille */
+  .feature-visual .win { box-shadow: none; }
+  .feature-visual .win-bar { display: none; }
+  .mock { padding: 14px; }
+  .mock-list { gap: 8px; }
+  .mock-row { padding: 11px 13px; }
+  .mock-row-title { font-size: 12.5px; }
+  .mock-row-meta { font-size: 11px; }
+  .mock-score { font-size: 11px; }
+  .tag-autofill { font-size: 10.5px; padding: 3px 8px; }
+  .mock-cols { gap: 12px; }
+  .mock-col { padding: 12px; gap: 7px; }
+  .mock-col-title { font-size: 12px; }
+  .mock-bars { gap: 7px; }
+  .bar { height: 6px; }
+
+  /* testimonials */
+  .testimonials { padding: 32px 20px; }
+  .testimonials-title { font-size: 19px; margin-bottom: 18px; }
+  .testimonials-grid { grid-template-columns: 1fr; gap: 12px; }
+  .testimonial { padding: 16px; }
+  .testimonial-quote { font-size: 13px; line-height: 1.55; margin-bottom: 10px; }
+  .testimonial-name { font-size: 12.5px; }
+  .testimonial-role { font-size: 11.5px; }
+
+  /* legal teaser */
+  .legal-teaser { padding: 32px 20px; }
+  .legal-teaser-title { font-size: 17px; margin-bottom: 18px; }
+  .legal-teaser-grid { grid-template-columns: 1fr; gap: 16px; }
+  .legal-teaser-item-title { font-size: 13px; margin-bottom: 6px; }
+  .legal-teaser-item-body { font-size: 12.5px; line-height: 1.55; margin-bottom: 6px; }
+  .legal-teaser-link { font-size: 12px; }
+
+  /* footer */
+  .footer-inner { padding: 32px 20px calc(26px + env(safe-area-inset-bottom)); }
+  .footer-brand { font-size: 15px; margin-bottom: 8px; }
+  .footer-tagline { font-size: 12.5px; margin-bottom: 20px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 22px; padding-top: 20px; }
+  .footer-col-title { font-size: 10px; margin-bottom: 10px; }
+  .footer-links { font-size: 13px; }
+  .footer-legal { font-size: 11px; margin-top: 22px; padding-top: 16px; }
+
+  /* en-tête des pages secondaires */
+  .page-hero-glow { inset: -30px -40px; filter: blur(20px); }
+  .page-hero-inner { padding: 36px 20px 28px; }
+  .page-hero-split { padding-bottom: 32px; grid-template-columns: 1fr; gap: 20px; }
+  .page-hero-kicker { font-size: 11px; margin-bottom: 12px; }
+  .page-hero-title, .page-hero-title--left { font-size: 26px; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 12px; }
+  .page-hero-body { font-size: 13.5px; line-height: 1.55; max-width: none; }
+  .page-hero-body--left { line-height: 1.6; margin-bottom: 20px; }
+  .page-hero-cta { width: 100%; padding: 14px; }
+  .page-hero-visual .win-bar { display: none; }
+  .page-hero-visual .win { box-shadow: none; }
+  .page-hero-visual .mock { padding: 14px; }
+  .page-hero-visual .mock-cols { gap: 12px; }
+  .page-hero-visual .mock-col { padding: 12px; }
+  .ats-score { font-size: 24px; margin-bottom: 2px; }
+  .ats-note { font-size: 11px; }
+
+  /* pricing : les trois offres l'une sous l'autre */
+  .plans { padding: 0 20px 32px; grid-template-columns: 1fr; gap: 14px; }
+  .plan { padding: 16px; gap: 0; }
+  .plan.featured { border-width: 2px; box-shadow: none; }
+  .plan-badge { font-size: 11px; margin-bottom: 10px; }
+  .plan-name { font-size: 14.5px; }
+  .plan-desc { font-size: 12.5px; margin-top: 2px; }
+  .plan-price { font-size: 30px; margin-top: 10px; }
+  .plan-price--featured { font-size: 34px; }
+  .plan-price-unit { font-size: 14px; }
+  .plan-sub { font-size: 11.5px; }
+  .plan-features { gap: 9px; font-size: 12.5px; }
+  .plan-cta { width: 100%; padding: 13px; }
+
+  /* FAQ : accordéon, une question par ligne */
+  .faq-section { padding: 28px 20px 36px; }
+  .faq-title { font-size: 18px; margin-bottom: 16px; }
+  .faq { grid-template-columns: 1fr; gap: 0; }
+  .faq-item { border-top: 1px solid var(--color-border); }
+  .faq-q { padding: 14px 0; margin: 0; font-size: 13.5px; cursor: pointer; }
+  .faq-sign { display: block; font-size: 16px; line-height: 1; color: var(--color-text-subtle); }
+  .faq-a { display: none; font-size: 12.5px; margin-bottom: 14px; }
+  .faq-item.is-open .faq-a { display: block; }
+
+  /* modèles de CV : deux par ligne */
+  .templates-section { padding: 28px 20px 32px; }
+  .templates-title { font-size: 20px; margin-bottom: 8px; }
+  .templates-body { font-size: 13px; line-height: 1.6; margin-bottom: 18px; }
+  .templates-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .template-card { padding: 12px; }
+  .template-preview { height: 118px; padding: 12px; gap: 5px; margin-bottom: 10px; }
+  .template-line { height: 4px; }
+  .template-line--name { height: 5px; }
+  .template-line--role { margin-bottom: 6px; }
+  .template-name { font-size: 12.5px; }
+
+  .closing-cta { padding: 32px 20px; }
+  .closing-cta-title { font-size: 20px; line-height: 1.25; margin-bottom: 16px; }
+  .closing-cta-btn { width: 100%; padding: 14px; }
+
+  /* suivi des candidatures : chaque ligne devient une carte */
+  .applications-page { padding: 32px 20px 36px; }
+  .applications-title { font-size: 24px; }
+  .applications-body { font-size: 13px; line-height: 1.6; max-width: none; margin-bottom: 18px; }
+  .app-search { max-width: none; margin-bottom: 0; }
+  .app-search .input { border-radius: var(--radius-full); padding: 11px 16px; font-size: 13px; background: #fafafa; border-color: var(--color-border-strong); }
+  .app-search .input:focus { background: #fff; }
+  .app-count-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin: 18px 0 10px;
+    font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--color-text-subtle);
+  }
+  .grid-table { border-top: none; gap: 10px; }
+  .grid-row {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "job  date"
+      "url  url"
+      "docs docs";
+    gap: 0;
+    padding: 14px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
   .grid-head { display: none; }
+  .cell-job { grid-area: job; }
+  .cell-job-title { font-size: 13.5px; }
+  .cell-job-city { font-size: 11.5px; margin-bottom: 8px; }
+  .cell-date { grid-area: date; align-self: start; font-size: 11px; color: var(--color-text-subtle); white-space: nowrap; }
+  /* l'URL complète ne tient pas : elle se coupe au lieu de casser la carte */
+  .cell-url { grid-area: url; margin-bottom: 12px; overflow: hidden; }
+  .cell-url a { display: block; font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .cell-actions { display: flex; gap: 8px; grid-area: docs; }
+  .tag { font-size: 11px; padding: 4px 10px; border-color: var(--color-border-strong); color: var(--color-text-muted); }
 }

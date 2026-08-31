@@ -3,6 +3,11 @@
 // prototype's reactive `state.query` filter. Reimplemented as static HTML
 // (all rows rendered up front) + a small vanilla script that hides/shows
 // rows on input, so the page ships with zero framework JS.
+//
+// Une seule structure sert les deux mises en page : tableau à cinq colonnes
+// au-dessus de 720px, carte empilée en dessous (cf. global.css). Les deux liens
+// de documents sont groupés dans .cell-actions, que le desktop dissout avec
+// `display:contents` pour retrouver ses deux colonnes.
 interface Application {
   jobTitle: string;
   jobCity: string;
@@ -22,8 +27,15 @@ const applications: Application[] = [
   { jobTitle: "Hospitality Supervisor", jobCity: "Gold Coast, QLD", url: "#", urlText: "indeed.com.au/job/hospitality-supervisor", appliedDate: "Jul 20, 2026", cvUrl: "#", letterUrl: "#" },
 ];
 ---
-<div style="max-width:420px;margin-bottom:28px">
+<div class="app-search">
   <input id="app-search" class="input" type="text" placeholder="Search by job title, company, or city…" autocomplete="off" />
+</div>
+
+<!-- Barre de comptage : remplace en mobile l'en-tête de colonnes, qui n'a plus
+     de colonnes à nommer une fois les lignes devenues des cartes. -->
+<div class="app-count-bar">
+  <span>Job</span>
+  <span id="app-count">{applications.length} applications</span>
 </div>
 
 <div class="grid-table">
@@ -36,14 +48,16 @@ const applications: Application[] = [
   </div>
   {applications.map((row) => (
     <div class="grid-row" data-search={`${row.jobTitle} ${row.jobCity}`.toLowerCase()}>
-      <div>
-        <div style="font-weight:700;font-size:14px">{row.jobTitle}</div>
-        <div style="font-size:12.5px;color:#888">{row.jobCity}</div>
+      <div class="cell-job">
+        <div class="cell-job-title">{row.jobTitle}</div>
+        <div class="cell-job-city">{row.jobCity}</div>
       </div>
-      <div><a href={row.url} style="font-size:13px;color:#555">{row.urlText} ↗</a></div>
-      <div style="font-size:13px;color:#666">{row.appliedDate}</div>
-      <div><a href={row.cvUrl} class="tag">Resume</a></div>
-      <div><a href={row.letterUrl} class="tag">Cover letter</a></div>
+      <div class="cell-url"><a href={row.url}>{row.urlText} ↗</a></div>
+      <div class="cell-date">{row.appliedDate}</div>
+      <div class="cell-actions">
+        <div><a href={row.cvUrl} class="tag">Resume</a></div>
+        <div><a href={row.letterUrl} class="tag">Cover letter</a></div>
+      </div>
     </div>
   ))}
   <p id="app-empty" style="display:none;padding:24px 0;color:#888;font-size:13.5px">No applications match "<span id="app-empty-query"></span>".</p>
@@ -54,16 +68,20 @@ const applications: Application[] = [
   const rows = document.querySelectorAll<HTMLDivElement>(".grid-row[data-search]");
   const empty = document.querySelector<HTMLParagraphElement>("#app-empty");
   const emptyQuery = document.querySelector<HTMLSpanElement>("#app-empty-query");
+  const count = document.querySelector<HTMLSpanElement>("#app-count");
 
   input?.addEventListener("input", () => {
     const q = input.value.trim().toLowerCase();
     let visible = 0;
     rows.forEach((row) => {
       const match = !q || (row.dataset.search ?? "").includes(q);
-      row.style.display = match ? "grid" : "none";
+      // display vide = la valeur de la feuille de style reprend la main, sinon
+      // un "grid" écrit ici figerait la mise en page d'un seul des deux formats.
+      row.style.display = match ? "" : "none";
       if (match) visible += 1;
     });
     if (empty) empty.style.display = visible === 0 ? "block" : "none";
     if (emptyQuery) emptyQuery.textContent = input.value;
+    if (count) count.textContent = `${visible} application${visible === 1 ? "" : "s"}`;
   });
 </script>

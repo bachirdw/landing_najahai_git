@@ -26,18 +26,18 @@ import { CHROME_STORE_URL } from "../lib/site";
   >
     <div class="win">
       <div class="win-bar"><div class="win-dot"></div><div class="win-dot"></div><div class="win-dot"></div></div>
-      <div style="padding:20px;display:flex;flex-direction:column;gap:10px">
-        <div style="display:flex;justify-content:space-between;border:1px solid var(--color-border);border-radius:10px;padding:13px 16px">
-          <div><div style="font-weight:700;font-size:13.5px">Frontend Engineer</div><div style="font-size:12px;color:#888">Atlassian · Sydney, NSW</div></div>
-          <span style="font-size:12px;font-weight:700;color:var(--color-success)">9.1</span>
+      <div class="mock mock-list">
+        <div class="mock-row">
+          <div><div class="mock-row-title">Frontend Engineer</div><div class="mock-row-meta">Atlassian · Sydney, NSW</div></div>
+          <span class="mock-score">9.1</span>
         </div>
-        <div style="display:flex;justify-content:space-between;border:1px solid var(--color-border);border-radius:10px;padding:13px 16px">
-          <div><div style="font-weight:700;font-size:13.5px">Backend Engineer</div><div style="font-size:12px;color:#888">Canva · Remote AU</div></div>
-          <span style="font-size:12px;font-weight:700;color:var(--color-success)">7.8</span>
+        <div class="mock-row">
+          <div><div class="mock-row-title">Backend Engineer</div><div class="mock-row-meta">Canva · Remote AU</div></div>
+          <span class="mock-score">7.8</span>
         </div>
-        <div style="display:flex;justify-content:space-between;border:1px solid var(--color-border);border-radius:10px;padding:13px 16px">
-          <div><div style="font-weight:700;font-size:13.5px">Site Supervisor</div><div style="font-size:12px;color:#888">Lendlease · Brisbane, QLD</div></div>
-          <span style="font-size:12px;font-weight:700;color:var(--color-success)">6.4</span>
+        <div class="mock-row">
+          <div><div class="mock-row-title">Site Supervisor</div><div class="mock-row-meta">Lendlease · Brisbane, QLD</div></div>
+          <span class="mock-score">6.4</span>
         </div>
       </div>
     </div>
@@ -52,16 +52,16 @@ import { CHROME_STORE_URL } from "../lib/site";
   >
     <div class="win">
       <div class="win-bar"><div class="win-dot"></div><div class="win-dot"></div><div class="win-dot"></div></div>
-      <div style="padding:20px;display:flex;gap:16px">
-        <div style="flex:1;border:1px solid var(--color-border);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:9px">
-          <div style="font-weight:700;font-size:13px;margin-bottom:2px">Resume — tailored</div>
+      <div class="mock mock-cols">
+        <div class="mock-col">
+          <div class="mock-col-title">Resume — tailored</div>
           <div class="bar bar-fill"></div>
           <div class="bar" style="width:70%"></div>
           <div class="bar bar-fill" style="width:85%"></div>
           <div class="bar" style="width:60%"></div>
         </div>
-        <div style="flex:1;border:1px solid var(--color-border);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:9px">
-          <div style="font-weight:700;font-size:13px;margin-bottom:2px">Cover letter</div>
+        <div class="mock-col">
+          <div class="mock-col-title">Cover letter</div>
           <div class="bar"></div>
           <div class="bar" style="width:90%"></div>
           <div class="bar" style="width:75%"></div>
@@ -81,12 +81,12 @@ import { CHROME_STORE_URL } from "../lib/site";
   >
     <div class="win">
       <div class="win-bar"><div class="win-dot"></div><div class="win-dot"></div><div class="win-dot"></div></div>
-      <div style="padding:20px">
-        <div style="border:1px solid var(--color-border);border-radius:10px;padding:15px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center">
-          <div style="font-weight:700;font-size:13.5px">Senior Product Designer — Application</div>
-          <span style="font-size:11.5px;color:var(--color-success);border:1px solid var(--color-success-border);background:var(--color-success-bg);padding:4px 10px;border-radius:100px">Autofilling…</span>
+      <div class="mock">
+        <div class="mock-row" style="margin-bottom:12px">
+          <div class="mock-row-title">Senior Product Designer — Application</div>
+          <span class="tag-autofill">Autofilling…</span>
         </div>
-        <div style="display:flex;flex-direction:column;gap:9px">
+        <div class="mock-bars">
           <div class="bar bar-fill" style="width:80%"></div>
           <div class="bar bar-fill" style="width:55%"></div>
           <div class="bar" style="width:65%"></div>

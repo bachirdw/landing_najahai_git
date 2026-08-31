@@ -3,6 +3,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Nav from "../components/Nav.astro";
 import FooterSimple from "../components/FooterSimple.astro";
 import { APP_URL } from "../lib/site";
+
+const faqs = [
+  { q: "Can I cancel anytime?", a: "Yes — Auto-Apply is billed weekly with no lock-in contract." },
+  { q: "Does auto-apply actually submit applications?", a: "Yes — the Chrome extension fills out and submits the real application form on job sites and employer portals." },
+];
 ---
 <BaseLayout
   title="Pricing — Najah AI"
@@ -11,74 +16,91 @@ import { APP_URL } from "../lib/site";
 >
   <Nav active="pricing" />
 
-  <section style="position:relative;overflow:hidden">
-    <div style="position:absolute;inset:0;background:radial-gradient(55% 55% at 30% 10%, rgba(255,196,120,.3), transparent 60%), radial-gradient(50% 50% at 75% 25%, rgba(120,190,255,.26), transparent 60%);z-index:0"></div>
-    <div class="wrap" style="position:relative;z-index:1;padding:72px 24px 48px;text-align:center">
-      <h1 style="font-weight:800;font-size:clamp(30px,4.4vw,42px);letter-spacing:-0.02em;margin:0 0 14px">Simple pricing, cancel anytime</h1>
-      <p style="font-size:15.5px;color:#555;max-width:56ch;margin:0 auto">One plan. Unlimited discovery, tailoring and auto-applying, billed weekly.</p>
+  <section class="page-hero">
+    <div class="page-hero-glow page-hero-glow--pricing"></div>
+    <div class="wrap page-hero-inner page-hero-inner--center">
+      <h1 class="page-hero-title">Simple pricing, cancel anytime</h1>
+      <p class="page-hero-body">One plan. Unlimited discovery, tailoring and auto-applying, billed weekly.</p>
     </div>
   </section>
 
-  <section class="wrap" style="padding:0 24px 72px;display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:24px;align-items:start">
+  <section class="wrap plans">
     <div class="plan">
-      <div style="font-weight:700;font-size:15px">Starter</div>
-      <div style="font-size:13.5px;color:#666">Try the pipeline manually</div>
-      <div style="font-size:34px;font-weight:800;margin-top:8px">$0</div>
-      <div style="font-size:12.5px;color:#888">forever</div>
-      <ul style="list-style:none;padding:0;margin:16px 0 0;display:flex;flex-direction:column;gap:10px;font-size:13.5px;color:#333">
+      <div class="plan-name">Starter</div>
+      <div class="plan-desc">Try the pipeline manually</div>
+      <div class="plan-price">$0</div>
+      <div class="plan-sub">forever</div>
+      <ul class="plan-features">
         <li>✓ Job discovery &amp; scoring</li>
         <li>✓ 3 tailored resumes / month</li>
-        <li style="color:#aaa">✗ Auto-apply extension</li>
-        <li style="color:#aaa">✗ Application tracker</li>
+        <li class="is-excluded">✗ Auto-apply extension</li>
+        <li class="is-excluded">✗ Application tracker</li>
       </ul>
-      <a href={APP_URL} class="btn-ghost" style="margin-top:16px">Start free</a>
+      <a href={APP_URL} class="btn-ghost plan-cta">Start free</a>
     </div>
 
     <div class="plan featured">
-      <span class="tag-success" style="align-self:flex-start">Most popular</span>
-      <div style="font-weight:700;font-size:15px">Auto-Apply</div>
-      <div style="font-size:13.5px;color:#666">The full end-to-end pipeline</div>
-      <div style="font-size:40px;font-weight:800;margin-top:8px">$50<span style="font-size:16px;font-weight:600;color:#666">/week</span></div>
-      <div style="font-size:12.5px;color:#888">billed weekly, cancel anytime</div>
-      <ul style="list-style:none;padding:0;margin:16px 0 0;display:flex;flex-direction:column;gap:10px;font-size:13.5px;color:#333">
+      <span class="tag-success plan-badge">Most popular</span>
+      <div class="plan-name">Auto-Apply</div>
+      <div class="plan-desc">The full end-to-end pipeline</div>
+      <div class="plan-price plan-price--featured">$50<span class="plan-price-unit">/week</span></div>
+      <div class="plan-sub">billed weekly, cancel anytime</div>
+      <ul class="plan-features">
         <li>✓ Unlimited job discovery &amp; scoring</li>
         <li>✓ Unlimited tailored resumes &amp; cover letters</li>
         <li>✓ Chrome auto-apply extension</li>
         <li>✓ Full application tracker</li>
         <li>✓ Priority job matching</li>
       </ul>
-      <a href={APP_URL} class="btn-primary" style="margin-top:16px;justify-content:center">Get started free</a>
+      <a href={APP_URL} class="btn-primary plan-cta">Get started free</a>
     </div>
 
     <div class="plan">
-      <div style="font-weight:700;font-size:15px">Teams</div>
-      <div style="font-size:13.5px;color:#666">For career coaches &amp; agencies</div>
-      <div style="font-size:34px;font-weight:800;margin-top:8px">Custom</div>
-      <div style="font-size:12.5px;color:#888">volume pricing</div>
-      <ul style="list-style:none;padding:0;margin:16px 0 0;display:flex;flex-direction:column;gap:10px;font-size:13.5px;color:#333">
+      <div class="plan-name">Teams</div>
+      <div class="plan-desc">For career coaches &amp; agencies</div>
+      <div class="plan-price">Custom</div>
+      <div class="plan-sub">volume pricing</div>
+      <ul class="plan-features">
         <li>✓ Everything in Auto-Apply</li>
         <li>✓ Multiple candidate seats</li>
         <li>✓ Dedicated support</li>
       </ul>
-      <a href="#" class="btn-ghost" style="margin-top:16px">Contact sales</a>
+      <a href="#" class="btn-ghost plan-cta">Contact sales</a>
     </div>
   </section>
 
   <div style="height:1px;background:var(--color-border)"></div>
 
-  <section class="wrap" style="padding:56px 24px">
-    <h2 style="font-weight:800;font-size:22px;margin:0 0 24px;letter-spacing:-0.01em">Questions</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
-      <div>
-        <div style="font-weight:700;font-size:14.5px;margin-bottom:6px">Can I cancel anytime?</div>
-        <p style="font-size:13.5px;color:#666;line-height:1.6;margin:0">Yes — Auto-Apply is billed weekly with no lock-in contract.</p>
-      </div>
-      <div>
-        <div style="font-weight:700;font-size:14.5px;margin-bottom:6px">Does auto-apply actually submit applications?</div>
-        <p style="font-size:13.5px;color:#666;line-height:1.6;margin:0">Yes — the Chrome extension fills out and submits the real application form on job sites and employer portals.</p>
-      </div>
+  <!-- Les réponses restent dépliées au-dessus de 720px (deux colonnes lisibles
+       d'un coup d'œil) ; sous ce seuil elles deviennent un accordéon, comme dans
+       le prototype mobile — six écrans de texte d'affilée sinon. -->
+  <section class="wrap faq-section">
+    <h2 class="faq-title">Questions</h2>
+    <div class="faq">
+      {faqs.map((item, i) => (
+        <div class="faq-item">
+          <button type="button" class="faq-q" aria-expanded="false" aria-controls={`faq-a-${i}`}>
+            <span>{item.q}</span>
+            <span class="faq-sign" aria-hidden="true">+</span>
+          </button>
+          <p class="faq-a" id={`faq-a-${i}`}>{item.a}</p>
+        </div>
+      ))}
     </div>
   </section>
 
   <FooterSimple />
 </BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>(".faq-q").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const item = btn.closest(".faq-item");
+      if (!item) return;
+      const open = item.classList.toggle("is-open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      const sign = btn.querySelector(".faq-sign");
+      if (sign) sign.textContent = open ? "−" : "+";
+    });
+  });
+</script>

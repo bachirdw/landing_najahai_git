@@ -10,18 +10,21 @@ interface Props {
 }
 const { kicker, heading, body, ctaText, ctaHref, ctaExternal = false, visualFirst = false } = Astro.props;
 ---
-<section class="wrap" style="padding:56px 24px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
-  <div style={visualFirst ? "order:2" : "order:1"}>
-    <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#888;margin-bottom:14px">{kicker}</div>
-    <h2 style="font-weight:800;font-size:32px;line-height:1.2;margin:0 0 16px;letter-spacing:-0.01em">{heading}</h2>
-    <p style="font-size:15px;line-height:1.65;color:#555;margin:0 0 20px">{body}</p>
+<!-- visualFirst n'inverse les colonnes qu'en desktop : en mobile le texte précède
+     toujours son illustration, sinon un bloc sur deux commencerait par une image
+     sans contexte. -->
+<section class:list={["wrap", "feature", { "feature--visual-first": visualFirst }]}>
+  <div class="feature-text">
+    <div class="feature-kicker">{kicker}</div>
+    <h2 class="feature-heading">{heading}</h2>
+    <p class="feature-body">{body}</p>
     {ctaText && ctaHref && (
       ctaExternal
         ? <a href={ctaHref} class="btn-ghost" target="_blank" rel="noopener noreferrer">{ctaText}</a>
         : <a href={ctaHref} class="btn-ghost">{ctaText}</a>
     )}
   </div>
-  <div style={visualFirst ? "order:1" : "order:2"}>
+  <div class="feature-visual">
     <slot />
   </div>
 </section>

@@ -9,23 +9,23 @@ const steps = [
   { label: "Application Tracker", url: "app.najahai.com.au/applications", headline: "Every application logged automatically", body: "The exact resume and cover letter sent to each job is saved and searchable, so you always know what you sent where." },
 ];
 ---
-<section id="pipeline" class="wrap" style="padding:64px 24px">
+<section id="pipeline" class="wrap tabs-section">
   <div class="tabgroup">
     {steps.map((step, i) => (
       <button type="button" class="tabbtn" data-tab-btn={i} aria-selected={i === 0 ? "true" : "false"}>{step.label}</button>
     ))}
   </div>
 
-  <div class="win" style="max-width:980px;margin:0 auto">
+  <div class="win tabs-win">
     <div class="win-bar"><div class="win-dot"></div><div class="win-dot"></div><div class="win-dot"></div>
       <div class="win-url tab-url">{steps[0].url}</div>
     </div>
-    <div style="padding:48px 36px;min-height:260px;display:flex;align-items:center;justify-content:center;text-align:center">
+    <div class="tabs-stage">
       {steps.map((step, i) => (
         <div class="tab-panel" data-tab-panel={i} style={`display:${i === 0 ? "block" : "none"}`} data-url={step.url}>
-          <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#888;margin-bottom:14px">{step.label}</div>
-          <div style="font-weight:800;font-size:28px;margin-bottom:12px;max-width:44ch;letter-spacing:-0.01em">{step.headline}</div>
-          <div style="font-size:14.5px;color:#666;max-width:48ch;margin:0 auto">{step.body}</div>
+          <div class="tab-kicker">{step.label}</div>
+          <div class="tab-headline">{step.headline}</div>
+          <div class="tab-body">{step.body}</div>
         </div>
       ))}
     </div>
@@ -46,6 +46,10 @@ const steps = [
         p.style.display = active ? "block" : "none";
         if (active && urlBar) urlBar.textContent = p.dataset.url ?? "";
       });
+
+      // L'onglet choisi peut être hors de vue : la barre défile horizontalement
+      // sur un écran de téléphone, et rien ne signalerait quel onglet est actif.
+      btn.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
     });
   });
 </script>
