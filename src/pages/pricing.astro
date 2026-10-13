@@ -3,104 +3,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Nav from "../components/Nav.astro";
 import FooterSimple from "../components/FooterSimple.astro";
 import { APP_URL } from "../lib/site";
-
-const faqs = [
-  { q: "Can I cancel anytime?", a: "Yes — Auto-Apply is billed weekly with no lock-in contract." },
-  { q: "Does auto-apply actually submit applications?", a: "Yes — the Chrome extension fills out and submits the real application form on job sites and employer portals." },
-];
 ---
-<BaseLayout
-  title="Pricing — Najah AI"
-  description="One plan. Unlimited job discovery, resume tailoring and auto-applying, billed weekly. Cancel anytime."
-  path="/pricing"
->
+<BaseLayout title="Private beta access — Najah AI" description="Invited private beta access and planned paid pricing." path="/pricing">
   <Nav active="pricing" />
-
-  <section class="page-hero">
-    <div class="page-hero-glow page-hero-glow--pricing"></div>
-    <div class="wrap page-hero-inner page-hero-inner--center">
-      <h1 class="page-hero-title">Simple pricing, cancel anytime</h1>
-      <p class="page-hero-body">One plan. Unlimited discovery, tailoring and auto-applying, billed weekly.</p>
-    </div>
-  </section>
-
-  <section class="wrap plans">
-    <div class="plan">
-      <div class="plan-name">Starter</div>
-      <div class="plan-desc">Try the pipeline manually</div>
-      <div class="plan-price">$0</div>
-      <div class="plan-sub">forever</div>
-      <ul class="plan-features">
-        <li>✓ Job discovery &amp; scoring</li>
-        <li>✓ 3 tailored resumes / month</li>
-        <li class="is-excluded">✗ Auto-apply extension</li>
-        <li class="is-excluded">✗ Application tracker</li>
-      </ul>
-      <a href={APP_URL} class="btn-ghost plan-cta">Start free</a>
-    </div>
-
-    <div class="plan featured">
-      <span class="tag-success plan-badge">Most popular</span>
-      <div class="plan-name">Auto-Apply</div>
-      <div class="plan-desc">The full end-to-end pipeline</div>
-      <div class="plan-price plan-price--featured">$50<span class="plan-price-unit">/week</span></div>
-      <div class="plan-sub">billed weekly, cancel anytime</div>
-      <ul class="plan-features">
-        <li>✓ Unlimited job discovery &amp; scoring</li>
-        <li>✓ Unlimited tailored resumes &amp; cover letters</li>
-        <li>✓ Chrome auto-apply extension</li>
-        <li>✓ Full application tracker</li>
-        <li>✓ Priority job matching</li>
-      </ul>
-      <a href={APP_URL} class="btn-primary plan-cta">Get started free</a>
-    </div>
-
-    <div class="plan">
-      <div class="plan-name">Teams</div>
-      <div class="plan-desc">For career coaches &amp; agencies</div>
-      <div class="plan-price">Custom</div>
-      <div class="plan-sub">volume pricing</div>
-      <ul class="plan-features">
-        <li>✓ Everything in Auto-Apply</li>
-        <li>✓ Multiple candidate seats</li>
-        <li>✓ Dedicated support</li>
-      </ul>
-      <a href="#" class="btn-ghost plan-cta">Contact sales</a>
-    </div>
-  </section>
-
-  <div style="height:1px;background:var(--color-border)"></div>
-
-  <!-- Les réponses restent dépliées au-dessus de 720px (deux colonnes lisibles
-       d'un coup d'œil) ; sous ce seuil elles deviennent un accordéon, comme dans
-       le prototype mobile — six écrans de texte d'affilée sinon. -->
-  <section class="wrap faq-section">
-    <h2 class="faq-title">Questions</h2>
-    <div class="faq">
-      {faqs.map((item, i) => (
-        <div class="faq-item">
-          <button type="button" class="faq-q" aria-expanded="false" aria-controls={`faq-a-${i}`}>
-            <span>{item.q}</span>
-            <span class="faq-sign" aria-hidden="true">+</span>
-          </button>
-          <p class="faq-a" id={`faq-a-${i}`}>{item.a}</p>
-        </div>
-      ))}
-    </div>
-  </section>
-
+  <main style="max-width:820px;margin:0 auto;padding:56px 24px 80px;line-height:1.7">
+    <h1>Private beta access</h1>
+    <p>The current beta is for invited testers. No payment is required. Accounts have technical daily limits for searches and AI requests; these are not unlimited plans or paid credits.</p>
+    <p>Create your account and contact <a href="mailto:tomdiaw999@gmail.com">Daba Diaw</a> to request tester access. Downloading the extension does not grant access.</p>
+    <a href={APP_URL} class="btn-primary">Create or sign in to your account</a>
+    <h2>Planned paid version</h2>
+    <p>The planned subscription is <strong>50 AUD per week</strong>. It is not available for purchase during this beta. Included credits, optional top-ups, cancellation and payment details will be published before paid access opens.</p>
+    <p><a href="/beta">Install the beta</a> · <a href="/terms">Beta terms</a></p>
+  </main>
   <FooterSimple />
 </BaseLayout>
-
-<script>
-  document.querySelectorAll<HTMLButtonElement>(".faq-q").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const item = btn.closest(".faq-item");
-      if (!item) return;
-      const open = item.classList.toggle("is-open");
-      btn.setAttribute("aria-expanded", open ? "true" : "false");
-      const sign = btn.querySelector(".faq-sign");
-      if (sign) sign.textContent = open ? "−" : "+";
-    });
-  });
-</script>

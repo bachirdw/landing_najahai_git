@@ -3,37 +3,44 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Nav from "../components/Nav.astro";
 import FooterSimple from "../components/FooterSimple.astro";
 import LegalSection from "../components/LegalSection.astro";
-
-// Placeholder text throughout — legal review still pending. Structure exists
-// now so the footer links resolve to a real page for Google/Stripe/Chrome
-// Web Store review; content gets finalized separately.
 const sections = [
-  { title: "1. Information we collect", body: "Placeholder — your resume, profile details, work authorization status, and the job data (title, employer, URL) associated with each application." },
-  { title: "2. How we use your information", body: "Placeholder — to discover matching jobs, score fit, generate tailored resumes and cover letters, and submit applications through the Chrome extension." },
-  { title: "3. Data shared with employers", body: "Placeholder — only the resume, cover letter and answers submitted as part of a given application are shared, and only with that employer." },
-  { title: "4. Data retention", body: "Placeholder — application records, including the exact resume and cover letter sent, are retained so you can review your history at any time." },
-  { title: "5. Your controls", body: "Placeholder — you can pause job discovery, review any application before it is sent, and delete your account and associated data at any time." },
-  { title: "6. Contact", body: "Placeholder — questions about this policy can be sent to privacy@najahai.com.au." },
+  {
+    "title": "1. Who operates Najah AI",
+    "body": "Najah AI is operated by Daba Diaw. This policy covers najahai.com.au, app.najahai.com.au and the Najah AI Chrome extension during the invited private beta. Contact: tomdiaw999@gmail.com."
+  },
+  {
+    "title": "2. Information used by the service",
+    "body": "We process your account details, uploaded resume, profile, work authorization, search preferences, job records, generated resumes and cover letters, application answers and results. Email sign-in stores a password hash. Google sign-in uses basic identity information; the service does not request access to your Gmail inbox or Google Drive."
+  },
+  {
+    "title": "3. Application pages and AI processing",
+    "body": "While the extension runs an application, it sends the application page structure, text, form state and action results to our server so the agent can decide its next action. Relevant profile, resume, job and page information is sent to configured AI providers. The current beta uses Google Gemini. Provider infrastructure may process data outside Australia. Page observations are required for the agent; a temporary server-side diagnostic archive is not part of the distributed release."
+  },
+  {
+    "title": "4. Employers and service providers",
+    "body": "Starting the agent can result in your resume, cover letter, profile details and answers being submitted to the job platform and employer. Other providers support hosting, identity, AI processing and job discovery. The beta does not require payment or create new Stripe Checkout sessions. These recipients have their own privacy practices; we cannot delete a submitted application from an employer’s systems by removing it from Najah AI."
+  },
+  {
+    "title": "5. Storage and diagnostic records",
+    "body": "Account and application data is stored on the beta server in Sydney, Australia. Technical and application logs are used to investigate failures. The extension keeps its connection settings and recent activity traces in your browser. A trace can contain personal information: review it before sharing. Do not send passwords, authentication tokens or API keys. Operational disk backups are retained for seven days; AI providers and job platforms have separate retention practices."
+  },
+  {
+    "title": "6. Retention and your requests",
+    "body": "Beta account, profile, documents and application records currently have no automatic expiry. Contact tomdiaw999@gmail.com to request access, correction or deletion. There is no self-service account deletion screen in this beta. We will check that the request comes from the account owner before acting. Removing the extension does not delete your server account, backup copies or applications already sent."
+  },
+  {
+    "title": "7. Your controls and extension permissions",
+    "body": "You can pause or stop the agent and uninstall the extension. The extension needs browser access to operate application pages, attach documents and maintain the running task. The installation guide explains its permissions. It cannot promise perfect answers: review your profile and generated documents and supervise your first application. Contact Daba Diaw at tomdiaw999@gmail.com for support, privacy requests or complaints."
+  }
 ];
 ---
-<BaseLayout
-  title="Privacy Policy — Najah AI"
-  description="How Najah AI collects, stores and uses your resume and application data."
-  path="/privacy"
->
+<BaseLayout title="Privacy Policy — Najah AI" description="How the invited beta processes your account, resume and application information." path="/privacy">
   <Nav />
-
-  <div style="max-width:820px;margin:0 auto;padding:56px 24px 80px">
-    <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#888;margin-bottom:12px">Legal</div>
-    <h1 style="font-weight:800;font-size:32px;letter-spacing:-0.02em;margin:0 0 8px">Privacy Policy</h1>
-    <p style="font-size:13px;color:#888;margin:0 0 40px">Last updated: [date] · Applies to najahai.com.au and the Najah AI Chrome extension</p>
-
+  <main style="max-width:820px;margin:0 auto;padding:56px 24px 80px">
+    <h1>Privacy Policy</h1>
+    <p>Last updated: 13 October 2026 · Private beta</p>
     {sections.map((sec) => <LegalSection title={sec.title} body={sec.body} />)}
-
-    <div style="display:flex;gap:16px;margin-top:24px">
-      <a href="/terms" style="font-size:13px;font-weight:600">View Terms of Service</a>
-    </div>
-  </div>
-
+    <p><a href="/beta">Installation and permissions</a> · <a href="mailto:tomdiaw999@gmail.com">Contact Daba Diaw</a></p>
+  </main>
   <FooterSimple />
 </BaseLayout>

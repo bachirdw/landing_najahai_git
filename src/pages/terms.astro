@@ -3,35 +3,44 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Nav from "../components/Nav.astro";
 import FooterSimple from "../components/FooterSimple.astro";
 import LegalSection from "../components/LegalSection.astro";
-
-// Placeholder text throughout — legal review still pending, see privacy.astro.
 const sections = [
-  { title: "1. Acceptance of terms", body: "Placeholder — by using Najah AI or installing the Chrome extension, you agree to these terms." },
-  { title: "2. The service", body: "Placeholder — Najah AI discovers jobs, scores them, tailors application documents, and submits applications via an automated browser agent on your behalf." },
-  { title: "3. Your responsibilities", body: "Placeholder — you are responsible for the accuracy of your resume and profile information, and for reviewing applications before submission where review is offered." },
-  { title: "4. Automated applications", body: "Placeholder — you authorize the Chrome extension to submit job applications on your behalf using your resume, tailored documents, and profile data." },
-  { title: "5. Limitations", body: "Placeholder — Najah AI does not guarantee interviews or job offers, and is not responsible for employer application outcomes." },
-  { title: "6. Termination", body: "Placeholder — you may stop using the service and delete your account at any time." },
+  {
+    "title": "1. Private beta access",
+    "body": "Najah AI is operated by Daba Diaw, contact tomdiaw999@gmail.com. Access is for invited accounts using Chrome on a computer. Downloading or sharing the ZIP does not grant an invitation. This beta has technical usage limits and does not charge for beta access."
+  },
+  {
+    "title": "2. What the service does",
+    "body": "The service discovers and scores jobs, prepares documents and runs an application agent in your browser. AI-generated content and automated actions can be wrong. There is no guarantee of an interview, offer or successful application on every platform."
+  },
+  {
+    "title": "3. Before you start",
+    "body": "Use your own account and provide information you are entitled to use. Check the accuracy of your profile, experience, work authorization, generated resume and letter. Stay present during your first run. Do not use the service to fabricate qualifications or send applications for someone without their permission."
+  },
+  {
+    "title": "4. Starting the application agent",
+    "body": "Clicking Start allows the agent to fill forms, upload documents and potentially submit a real application. Do not assume there is always a final approval screen. Pause or Stop before submission if you want to review it yourself. Complete login, CAPTCHA and questions requiring your judgment yourself, then resume with the application tab open. Follow the rules of each job platform."
+  },
+  {
+    "title": "5. Limits, updates and stopping",
+    "body": "Usage limits can pause new searches or applications. Daily beta counters reset at 00:00 UTC. Access can be suspended during the test programme. ZIP installations are updated manually. You can stop using Najah AI and remove its extension at any time; contact the operator to request deletion of server data. Previously submitted applications remain with the platform or employer."
+  },
+  {
+    "title": "6. Future paid version",
+    "body": "The planned paid version is 50 AUD per week. Included credits, top-ups, cancellation details and payment handling are not final and are not an active offer in this beta. Separate pricing and terms will be provided before paid access is opened."
+  },
+  {
+    "title": "7. Contact and consumer rights",
+    "body": "Send support requests or complaints to Daba Diaw at tomdiaw999@gmail.com. These terms do not exclude rights or guarantees that cannot lawfully be excluded under applicable law. See the Privacy Policy for information about processing your data."
+  }
 ];
 ---
-<BaseLayout
-  title="Terms of Service — Najah AI"
-  description="The terms governing your use of Najah AI and the auto-apply Chrome extension."
-  path="/terms"
->
+<BaseLayout title="Beta Terms — Najah AI" description="Terms for invited beta accounts and the Najah AI Chrome extension." path="/terms">
   <Nav />
-
-  <div style="max-width:820px;margin:0 auto;padding:56px 24px 80px">
-    <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#888;margin-bottom:12px">Legal</div>
-    <h1 style="font-weight:800;font-size:32px;letter-spacing:-0.02em;margin:0 0 8px">Terms of Service</h1>
-    <p style="font-size:13px;color:#888;margin:0 0 40px">Last updated: [date] · Applies to najahai.com.au and the Najah AI Chrome extension</p>
-
+  <main style="max-width:820px;margin:0 auto;padding:56px 24px 80px">
+    <h1>Beta Terms</h1>
+    <p>Last updated: 13 October 2026 · Private beta</p>
     {sections.map((sec) => <LegalSection title={sec.title} body={sec.body} />)}
-
-    <div style="display:flex;gap:16px;margin-top:24px">
-      <a href="/privacy" style="font-size:13px;font-weight:600">View Privacy Policy</a>
-    </div>
-  </div>
-
+    <p><a href="/beta">Installation and permissions</a> · <a href="mailto:tomdiaw999@gmail.com">Contact Daba Diaw</a></p>
+  </main>
   <FooterSimple />
 </BaseLayout>
