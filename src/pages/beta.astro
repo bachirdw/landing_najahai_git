@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Nav from "../components/Nav.astro";
 import FooterSimple from "../components/FooterSimple.astro";
 import { APP_URL, BETA_ZIP_URL } from "../lib/site";
-const steps = ["Download and extract the ZIP into a permanent folder such as Documents/Najah AI Beta. Do not load the ZIP itself.", "Open chrome://extensions in Chrome and turn on Developer mode.", "Choose Load unpacked and select the extracted folder containing manifest.json.", "Pin Najah AI — Autopilot BETA from the extensions menu. Keep only one Najah AI extension enabled.", "Create or sign in to your account at app.najahai.com.au. The operator must enable your invited account before searches or applications can run.", "Upload your resume, complete your profile and review your generated documents. Keep the signed-in Najah AI website tab open, then open the extension; it connects automatically."];
+const steps = ["Download and extract the ZIP into a permanent folder such as Documents/Najah AI Beta. Do not load the ZIP itself.", "Open chrome://extensions in Chrome and turn on Developer mode.", "Choose Load unpacked and select the extracted folder containing manifest.json.", "Pin Najah AI — Autopilot BETA from the extensions menu. Keep only one Najah AI extension enabled.", "Create or sign in to your personal Najah AI account. Private invitations need activation; when commercial access is offered, subscribe on the website and check your profile. Installing the ZIP does not enable an account or start a subscription.", "Upload your resume, complete your profile and review your generated documents. Keep the signed-in Najah AI website tab open, then open the extension; it connects automatically."];
 const permissions = [
   ["Debugger", "Lets the agent inspect and control the application tab, type answers and attach documents. Chrome shows a debugging banner while it is attached."],
   ["Tabs and navigation", "Finds the signed-in Najah AI tab and follows application tabs opened by job platforms."],
@@ -13,15 +13,16 @@ const permissions = [
   ["Background tasks", "Maintains the running agent and recovers task state when Chrome suspends its background process."]
 ];
 ---
-<BaseLayout title="Install the private beta — Najah AI" description="Install, update and report a problem with the Najah AI Chrome beta." path="/beta">
+<BaseLayout title="Install the beta — Najah AI" description="Install, update and report a problem with the Najah AI Chrome beta." path="/beta">
   <Nav />
   <main style="max-width:820px;margin:0 auto;padding:56px 24px 80px;line-height:1.7">
     <h1>Install Najah AI Beta</h1>
-    <p>Desktop Chrome · Invited accounts · Manual ZIP installation · No payment required</p>
+    <p>Desktop Chrome · Personal account · Manual ZIP installation</p>
+    <p>Access is checked on your account: an invitation for the private beta, or a paid subscription when commercial access is enabled. A checkout marked TEST uses a fictitious card only.</p>
     <p>No Python, Docker or AI API key is needed. This beta is distributed manually, not through the Chrome Web Store.</p>
     <a href={BETA_ZIP_URL} class="btn-primary">Download the beta ZIP</a>
     <h2>Install and connect</h2><ol>{steps.map(step => <li style="margin-bottom:12px">{step}</li>)}</ol>
-    <p><a href={APP_URL}>Open Najah AI and sign in</a>. Sharing the ZIP does not enable a new account.</p>
+    <p><a href={APP_URL}>Open Najah AI and sign in</a>. Your profile, subscription and budget are managed in the application. Sharing the ZIP does not grant account access.</p>
     <h2>Your first application</h2>
     <p>The agent can submit real applications. Review your documents and stay at your computer. Pause or Stop to take over. Complete login, CAPTCHA and personal questions yourself, then Resume. Keep the application tab open and do not dismiss Chrome’s debugging banner.</p>
     <h2>What permissions mean</h2>
@@ -32,7 +33,9 @@ const permissions = [
     <h2>Report a problem</h2>
     <p>Email <a href="mailto:bachirdiaw56100@gmail.com">Bachir Diaw — bachirdiaw56100@gmail.com</a> with your operating system, Chrome version, extension version, job platform, approximate time and what happened. If a trace is needed, use Logs in the extension and review it before sharing. Never send passwords, login tokens or API keys.</p>
     <h2>If access is paused</h2>
-    <p>Contact the operator if your invitation is missing or a usage limit is reached. Daily limits reset at 00:00 UTC. Resume does not increase your quota. No card is charged automatically.</p>
+    <p>Check your application profile if account access or budget is unavailable. Technical daily limits are separate from your budget and reset at 00:00 UTC. Resume or a recharge does not reset them. A recharge is never purchased automatically.</p>
+    <h2>Remove the extension</h2>
+    <p>Stop the agent, then remove Najah AI at chrome://extensions. Removing it does not delete your account, undo applications or cancel a subscription. Manage cancellation and invoices from your application profile.</p>
     <p><a href="/terms">Beta terms</a> · <a href="/privacy">Privacy</a></p>
   </main>
   <FooterSimple />
