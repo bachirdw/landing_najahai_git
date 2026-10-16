@@ -2,7 +2,7 @@
 import { APP_URL } from "../lib/site";
 
 interface Props {
-  active?: "resume-builder" | "applications" | "pricing";
+  active?: "resume-builder" | "applications" | "pricing" | "beta";
 }
 const { active } = Astro.props;
 
@@ -22,6 +22,7 @@ const linkClass = (id: string) => (id === active ? "nav-link is-active" : "nav-l
       <a href="/resume-builder" class={linkClass("resume-builder")}>Resume Builder</a>
       <a href="/applications" class={linkClass("applications")}>Application Tracker</a>
       <a href="/pricing" class={linkClass("pricing")}>Pricing</a>
+      <a href="/beta" class={linkClass("beta")}>Install beta</a>
     </nav>
     <a href={APP_URL} class="btn-primary nav-cta">Dashboard</a>
 
@@ -44,6 +45,7 @@ const linkClass = (id: string) => (id === active ? "nav-link is-active" : "nav-l
     <a href="/resume-builder" class={linkClass("resume-builder")}>Resume Builder</a>
     <a href="/applications" class={linkClass("applications")}>Application Tracker</a>
     <a href="/pricing" class={linkClass("pricing")}>Pricing</a>
+    <a href="/beta" class={linkClass("beta")}>Install beta</a>
     <a href={APP_URL} class="btn-primary nav-menu-cta">Get started</a>
   </div>
 </header>
