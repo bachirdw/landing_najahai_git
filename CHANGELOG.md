@@ -8,3 +8,8 @@
 - Present the current beta as free and invitation-only; label 50 AUD/week as a planned paid version, without unlimited usage promises.
 
 - Prepare beta v1.1 installation guidance for personal invited or paid accounts, keep subscription management in the app, and allow explicit local preview URLs without changing production defaults.
+
+## Beta guide presentation (2026-10-17)
+
+- Reuse existing Hero and resume-builder structure and global classes on the beta guide; remove inline styles while preserving BaseLayout, Nav and FooterSimple.
+- Validation: Astro built 7 routes; beta guide checked in Chromium at 1280/390 px without overflow or JavaScript errors. Shared layout, navigation, footer and global CSS remain unchanged.

@@ -15,28 +15,39 @@ const permissions = [
 ---
 <BaseLayout title="Install the beta — Najah AI" description="Install, update and report a problem with the Najah AI Chrome beta." path="/beta">
   <Nav />
-  <main style="max-width:820px;margin:0 auto;padding:56px 24px 80px;line-height:1.7">
-    <h1>Install Najah AI Beta</h1>
-    <p>Desktop Chrome · Personal account · Manual ZIP installation</p>
-    <p>Access is checked on your account: an invitation for the private beta, or a paid subscription when commercial access is enabled. A checkout marked TEST uses a fictitious card only.</p>
-    <p>No Python, Docker or AI API key is needed. This beta is distributed manually, not through the Chrome Web Store.</p>
-    <a href={BETA_ZIP_URL} class="btn-primary">Download the beta ZIP</a>
-    <h2>Install and connect</h2><ol>{steps.map(step => <li style="margin-bottom:12px">{step}</li>)}</ol>
-    <p><a href={APP_URL}>Open Najah AI and sign in</a>. Your profile, subscription and budget are managed in the application. Sharing the ZIP does not grant account access.</p>
-    <h2>Your first application</h2>
-    <p>The agent can submit real applications. Review your documents and stay at your computer. Pause or Stop to take over. Complete login, CAPTCHA and personal questions yourself, then Resume. Keep the application tab open and do not dismiss Chrome’s debugging banner.</p>
-    <h2>What permissions mean</h2>
-    {permissions.map(([title, body]) => <section><h3>{title}</h3><p>{body}</p></section>)}
-    <p>Application page information is sent to Najah AI and relevant information is processed by AI providers. Read the <a href="/privacy">Privacy Policy</a> before starting.</p>
-    <h2>Update</h2>
-    <p>Stop the agent first. Extract the new ZIP and replace the contents of the same installation folder. At chrome://extensions, click Reload on the Najah AI card, then check its version. ZIP releases do not update automatically. Keep only one version enabled.</p>
-    <h2>Report a problem</h2>
-    <p>Email <a href="mailto:bachirdiaw56100@gmail.com">Bachir Diaw — bachirdiaw56100@gmail.com</a> with your operating system, Chrome version, extension version, job platform, approximate time and what happened. If a trace is needed, use Logs in the extension and review it before sharing. Never send passwords, login tokens or API keys.</p>
-    <h2>If access is paused</h2>
-    <p>Check your application profile if account access or budget is unavailable. Technical daily limits are separate from your budget and reset at 00:00 UTC. Resume or a recharge does not reset them. A recharge is never purchased automatically.</p>
-    <h2>Remove the extension</h2>
-    <p>Stop the agent, then remove Najah AI at chrome://extensions. Removing it does not delete your account, undo applications or cancel a subscription. Manage cancellation and invoices from your application profile.</p>
+  <main>
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-kicker">Desktop Chrome · Personal account · Manual ZIP installation</div>
+    <h1 class="hero-title">Install Najah AI Beta</h1>
+    <p class="hero-body">Access is checked on your account: an invitation for the private beta, or a paid subscription when commercial access is enabled. A checkout marked TEST uses a fictitious card only.</p>
+    <p class="hero-body">No Python, Docker or AI API key is needed. This beta is distributed manually, not through the Chrome Web Store.</p>
+    <div class="hero-actions">
+      <a href={BETA_ZIP_URL} class="btn-primary">Download the beta ZIP</a>
+      <a href={APP_URL} class="btn-ghost">Open Najah AI</a>
+    </div>
+    </div>
+  </section>
+  <section class="wrap templates-section">
+    <div class="mock-list">
+    <section class="plan"><h2 class="plan-name">Install and connect</h2><ol class="plan-features">{steps.map((step, index) => <li>{index + 1}. {step}</li>)}</ol>
+    <p><a href={APP_URL}>Open Najah AI and sign in</a>. Your profile, subscription and budget are managed in the application. Sharing the ZIP does not grant account access.</p></section>
+    <section class="plan"><h2 class="plan-name">Your first application</h2>
+    <p>The agent can submit real applications. Review your documents and stay at your computer. Pause or Stop to take over. Complete login, CAPTCHA and personal questions yourself, then Resume. Keep the application tab open and do not dismiss Chrome’s debugging banner.</p></section>
+    <section class="plan"><h2 class="plan-name">What permissions mean</h2>
+    {permissions.map(([title, body]) => <section class="mock-col"><h3 class="mock-col-title">{title}</h3><p class="plan-desc">{body}</p></section>)}
+    <p>Application page information is sent to Najah AI and relevant information is processed by AI providers. Read the <a href="/privacy">Privacy Policy</a> before starting.</p></section>
+    <section class="plan"><h2 class="plan-name">Update</h2>
+    <p>Stop the agent first. Extract the new ZIP and replace the contents of the same installation folder. At chrome://extensions, click Reload on the Najah AI card, then check its version. ZIP releases do not update automatically. Keep only one version enabled.</p></section>
+    <section class="plan"><h2 class="plan-name">Report a problem</h2>
+    <p>Email <a href="mailto:bachirdiaw56100@gmail.com">Bachir Diaw — bachirdiaw56100@gmail.com</a> with your operating system, Chrome version, extension version, job platform, approximate time and what happened. If a trace is needed, use Logs in the extension and review it before sharing. Never send passwords, login tokens or API keys.</p></section>
+    <section class="plan"><h2 class="plan-name">If access is paused</h2>
+    <p>Check your application profile if account access or budget is unavailable. Technical daily limits are separate from your budget and reset at 00:00 UTC. Resume or a recharge does not reset them. A recharge is never purchased automatically.</p></section>
+    <section class="plan"><h2 class="plan-name">Remove the extension</h2>
+    <p>Stop the agent, then remove Najah AI at chrome://extensions. Removing it does not delete your account, undo applications or cancel a subscription. Manage cancellation and invoices from your application profile.</p></section>
     <p><a href="/terms">Beta terms</a> · <a href="/privacy">Privacy</a></p>
+    </div>
+  </section>
   </main>
   <FooterSimple />
 </BaseLayout>
